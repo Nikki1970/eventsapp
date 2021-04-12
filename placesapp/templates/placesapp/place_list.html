@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Places List</h1>
+  {% if place_list %}
+  <ul>
+    {% for place in place_list %}
+      <li>
+        <a href="{{ place.get_absolute_url }}">{{ place.title }}</a> ({{place.city}})--({{place.type_of_place}})
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no Places.</p>
+  {% endif %} 
+{% endblock %}
