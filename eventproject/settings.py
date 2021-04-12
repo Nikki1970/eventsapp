@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'eventapp.apps.EventappConfig',
     'placesapp.apps.PlacesappConfig',
     'taggit',
+    'django.contrib.gis',
 ]
 
 MIDDLEWARE = [
