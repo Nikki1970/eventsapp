@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'eventapp.apps.EventappConfig',
     'placesapp.apps.PlacesappConfig',
+    'taggit',
 ]
 
 MIDDLEWARE = [

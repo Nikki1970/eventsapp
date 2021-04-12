@@ -21,6 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('eventapp/', include('eventapp.urls')),
     path('placesapp/', include('placesapp.urls')),
-    path('',RedirectView.as_view(url='event/')),
+    path('',RedirectView.as_view(url='eventapp/')),
 
 ]
