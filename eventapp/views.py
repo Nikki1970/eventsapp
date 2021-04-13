@@ -48,3 +48,14 @@ def deleteEvent(request, pk):
         return redirect('list-of-events')
     context = {'event':event}
     return render(request, "eventapp/delete.html",context)
+
+def updateEvent(request, pk):
+    event = Event.objects.get(id=pk)
+    form = EventForm(instance=event)
+    if request.method == "POST":
+        form = EventForm(request.POST,instance=event)
+        if form.is_valid():
+            form.save()
+            return redirect('list-of-events')
+    context = {'form':form}
+    return render(request,"eventapp/event_edit.html",context)

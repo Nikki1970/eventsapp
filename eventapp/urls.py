@@ -8,4 +8,5 @@ urlpatterns = [
     path('all_hosts/', views.all_hosts, name='all-hosts'),
     path('event/host/<str:inputhost>/',views.host_events, name="host-events"),
     path('delete_event/<int:pk>/',views.deleteEvent, name="delete_event"),
+    path('update_event/<int:pk>/',views.updateEvent, name="update_event"),
 ]

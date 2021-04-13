@@ -17,8 +17,22 @@
     width: 100px
   }
 
-  .eventbutton {
-    background-color: #407a3e;
+  .update {
+    background-color: #1ac4ee;
+    border: none;
+    color: rgb(249, 253, 251);
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 2px 0.5px;
+    cursor: pointer;
+    width:100px
+  }
+
+  .event{
+    background-color: #989998;
     border: none;
     color: rgb(249, 253, 251);
     padding: 8px 20px;
