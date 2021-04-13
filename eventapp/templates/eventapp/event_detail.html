@@ -7,5 +7,12 @@
   <p><strong>Event:</strong> {{ event.title }}</p> 
   <p><strong>Host:</strong> {{ event.host }}</p>
   <p><strong>place:</strong>{{ event.place }}</p>
-  <p><strong>tags:</strong>{{ event.tags }}</p>
+  <p><strong>Tags:</strong></p>
+  <ul>
+    {% for tag in event.tags.all %}
+    <li>
+    {{ tag }}
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}
