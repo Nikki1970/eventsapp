@@ -3,3 +3,30 @@
     padding : 0;
     list-style : none;
 }
+.button {
+    background-color: #c91c1c;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 2px 0.5px;
+    cursor: pointer;
+    width: 100px
+  }
+
+  .eventbutton {
+    background-color: #407a3e;
+    border: none;
+    color: rgb(249, 253, 251);
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 2px 0.5px;
+    cursor: pointer;
+    width:100px
+  }

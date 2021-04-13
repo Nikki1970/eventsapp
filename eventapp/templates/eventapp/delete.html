@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<p>Are u sure you want to delete "{{event}}"?</p>
+<form action="{% url 'delete_event' event.pk %}" method="POST">
+    {% csrf_token %}
+    <a href="{% url 'list-of-events' %}">Cancel</a>
+    <input type="submit" name="Confirm">
+</form>
+{% endblock %}

@@ -40,3 +40,11 @@ def host_events(request,inputhost):
     user = User.objects.get(username=inputhost)
     host = Event.objects.filter(host=user)
     return render(request, 'eventapp/host_events.html',context={"hosts":host})
+
+def deleteEvent(request, pk):
+    event = Event.objects.get(id=pk)
+    if request.method =="POST":
+        event.delete()
+        return redirect('list-of-events')
+    context = {'event':event}
+    return render(request, "eventapp/delete.html",context)

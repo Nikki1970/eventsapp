@@ -3,13 +3,18 @@
 {% block content %}
   <h1>Event List</h1>
   {% if event_list %}
-  <ul>
+<table style="width:15%">
+      <tr>
+        <th>Event Title</th>
+        <th>Remove </th>
+      </tr>
     {% for event in event_list %}
-      <li>
-        <a href="{{ event.get_absolute_url }}">{{ event.title }}</a>
-      </li>
+      <tr>
+        <td><a href="{{ event.get_absolute_url }}" class="eventbutton">{{ event.title }}</a></td>
+        <td><a href="{% url 'delete_event' event.pk %}" class="button">Delete</a></td>
+      </tr>
     {% endfor %}
-  </ul>
+</table>
   {% else %}
     <p>There are no Events.</p>
   {% endif %} 
