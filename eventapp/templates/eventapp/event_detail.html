@@ -5,7 +5,7 @@
   <h1>Title: {{ event.title }}</h1>
 
   <p><strong>Event:</strong> {{ event.title }}</p> 
-  <p><strong>Host:</strong> {{ event.host }}</p>
+  <p><strong>Host:</strong><a href="{% url 'host-events' event.host %}">{{ event.host }}</a></p>
   <p><strong>place:</strong>{{ event.place }}</p>
   <p><strong>Tags:</strong></p>
   <ul>

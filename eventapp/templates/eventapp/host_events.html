@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="container">
+    <ul>
+        {% for event in hosts %}
+        <li>
+            <a href="{% url 'event-detail' event.pk %}">{{event}}</a>
+        </li>
+
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

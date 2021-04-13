@@ -15,7 +15,7 @@ class Event(TimeStampedModel):
     eventtime = models.DateTimeField(default=timezone.now,blank=True)
 
     def __str__(self):
-        return '{0} {1}'.format(self.title,self.host)
+        return '{0}'.format(self.title,self.host)
     
     def get_absolute_url(self):
         return reverse('event-detail',args=[str(self.id)])

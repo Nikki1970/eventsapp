@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+    <ul>
+        {% for event in all_events %}
+        <li>
+            <a href="{% url 'host-events' event.host %}">{{event.host}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

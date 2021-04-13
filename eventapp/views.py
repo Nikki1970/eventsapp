@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from eventapp.models import Event
 from django.views import generic
 from .forms import EventForm
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -30,3 +31,12 @@ def event_new(request):
     else:
         form = EventForm()
     return render(request, 'eventapp/event_edit.html', {'form': form})
+
+def all_hosts(request):
+    event = Event.objects.distinct('host')
+    return render(request, 'eventapp/all_hosts.html', context={"all_events": event})
+
+def host_events(request,inputhost):
+    user = User.objects.get(username=inputhost)
+    host = Event.objects.filter(host=user)
+    return render(request, 'eventapp/host_events.html',context={"hosts":host})
