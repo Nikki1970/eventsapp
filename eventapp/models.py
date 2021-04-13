@@ -5,6 +5,7 @@ from taggit.managers import TaggableManager
 from datetime import date
 from django.utils import timezone
 from model_utils.models import TimeStampedModel
+from django.urls import reverse
 
 class Event(TimeStampedModel):
     title = models.CharField(max_length = 12,help_text="Event Name")
@@ -15,3 +16,6 @@ class Event(TimeStampedModel):
 
     def __str__(self):
         return '{0} {1}'.format(self.title,self.host)
+    
+    def get_absolute_url(self):
+        return reverse('event-detail',args=[str(self.id)])

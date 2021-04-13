@@ -11,3 +11,6 @@ def index(request):
 
 class EventListView(generic.ListView):
     model = Event
+
+class EventDetailView(generic.DetailView):
+    model = Event
