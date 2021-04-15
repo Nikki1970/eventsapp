@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from eventapp.models import Event
+from eventapp.models import Event, EventTime
 from django.views import generic
 from .forms import EventForm
 from django.contrib.auth.models import User
+from .filters import EventFilter
 # Create your views here.
 
 
@@ -13,7 +14,12 @@ def index(request):
 
 class EventListView(generic.ListView):
     model = Event
+    template_name = 'eventsapp/event_list.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = EventFilter(self.request.GET,queryset=self.get_queryset())
+        return context
 class EventDetailView(generic.DetailView):
     model = Event
 

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'placesapp.apps.PlacesappConfig',
     'taggit',
     'django.contrib.gis',
+    'django_filters',
+    'bootstrapform'
 ]
 
 MIDDLEWARE = [
