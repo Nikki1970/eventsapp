@@ -12,10 +12,18 @@ class Event(TimeStampedModel):
     place = models.ForeignKey(Place,on_delete=models.SET_NULL,null=True,blank=True)
     host = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     tags = TaggableManager()
-    eventtime = models.DateTimeField(default=timezone.now,blank=True)
 
     def __str__(self):
         return '{0}'.format(self.title,self.host)
     
     def get_absolute_url(self):
         return reverse('event-detail',args=[str(self.id)])
+
+class EventTime(models.Model):
+    event = models.ForeignKey('Event',on_delete=models.SET_NULL,null=True)
+    date = models.DateField(default=date.today)
+    starttime = models.TimeField(blank=True,null=True)
+    endtime = models.TimeField(blank=True,null=True)
+
+    def __str__(self):
+        return str(self.date)
