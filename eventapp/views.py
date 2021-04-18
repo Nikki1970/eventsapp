@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from eventapp.models import Event, EventTime
 from django.views import generic
-from .forms import EventForm
+from .forms import EventForm, EventTimeForm
 from django.contrib.auth.models import User
 from .filters import EventFilter
+from django.shortcuts import get_object_or_404
 # Create your views here.
 
 
@@ -65,3 +66,12 @@ def updateEvent(request, pk):
             return redirect('list-of-events')
     context = {'form':form}
     return render(request,"eventapp/event_edit.html",context)
+
+def eventtime_new(request, pk):
+    form = EventTimeForm(request.POST or None)
+    if form.is_valid():
+        event_form = form.save(commit=False)
+        event_form.event = get_object_or_404(Event, pk=pk) 
+        event_form.save()
+        return redirect('event-detail', pk=pk)
+    return render(request, 'eventapp/event_time.html', {'form': form})

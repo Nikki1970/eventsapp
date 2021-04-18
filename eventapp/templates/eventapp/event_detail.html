@@ -17,4 +17,13 @@
 </ul>
 <p><strong>Created :</strong>{{ event.created }}</p>
 <p><strong>Modified :</strong>{{ event.modified }}</p>
+<p><strong>EventTimings</strong></p>
+<ul>{% for timings in event.eventtime_set.all %}
+
+  <li>
+    <p>{{timings.date}}:- from {{timings.starttime}} to {{timings.endtime}}</p>
+  </li>
+  {% endfor %}
+</ul>
+<a href="{% url 'eventtime_new' pk=event.pk %}">Add EventTimings</a>
 {% endblock %}
