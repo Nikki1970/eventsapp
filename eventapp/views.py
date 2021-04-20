@@ -3,7 +3,7 @@ from eventapp.models import Event, EventTime
 from django.views import generic
 from .forms import EventForm, EventTimeForm
 from django.contrib.auth.models import User
-from .filters import EventFilter
+from .filters import EventFilter,EventTimeFilter
 from django.shortcuts import get_object_or_404
 from django.forms import formset_factory
 # Create your views here.
@@ -76,3 +76,7 @@ def eventtime_new(request, pk):
         event_form.save()
         return redirect('event-detail', pk=pk)
     return render(request, 'eventapp/event_time.html', {'form': form})
+
+def eventtimefilter(request):
+    eventtime = EventTimeFilter(request.GET, queryset=EventTime.objects.all())
+    return render(request,'eventapp/event_timelist.html',{'filter': eventtime})

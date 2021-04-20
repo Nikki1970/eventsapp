@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h5>Filter using date and time</h5>
+    <form method="get">
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
+    <table>
+    {% for eventtime in filter.qs.distinct %}   
+    <tr>
+        <td><a href="{{ eventtime.event.get_absolute_url }}">{{ eventtime.event.title }}</a></td>
+    </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

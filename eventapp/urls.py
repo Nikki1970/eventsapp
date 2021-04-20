@@ -11,4 +11,5 @@ urlpatterns = [
     path('delete_event/<int:pk>/',views.deleteEvent, name="delete_event"),
     path('update_event/<int:pk>/',views.updateEvent, name="update_event"),
     path('event/timings/<int:pk>/',views.eventtime_new, name="eventtime_new"),
+    path('event/timefilter/',views.eventtimefilter,name="filter")
 ]
