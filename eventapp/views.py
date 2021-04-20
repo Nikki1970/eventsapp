@@ -5,6 +5,7 @@ from .forms import EventForm, EventTimeForm
 from django.contrib.auth.models import User
 from .filters import EventFilter
 from django.shortcuts import get_object_or_404
+from django.forms import formset_factory
 # Create your views here.
 
 
@@ -21,23 +22,23 @@ class EventListView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context['filter'] = EventFilter(self.request.GET,queryset=self.get_queryset())
         return context
+
 class EventDetailView(generic.DetailView):
     model = Event
 
-def new_event(request):
-    form = EventForm
-    return render(request,)
-
 def event_new(request):
-    if request.method == "POST":
-        form = EventForm(request.POST)
-        if form.is_valid():
-            event = form.save(commit=False)
-            event.save()
-            return redirect('list-of-events')
-    else:
-        form = EventForm()
-    return render(request, 'eventapp/event_edit.html', {'form': form})
+    form = EventForm(request.POST or None)
+    EventTimeFormSet = formset_factory(EventTimeForm, extra=2)
+    eventtime_formset = EventTimeFormSet(request.POST or None)
+    if form.is_valid() and eventtime_formset.is_valid():
+        form = form.save()
+        for eventform in eventtime_formset:
+            eventform = eventform.save(commit=False)
+            eventform.event = form
+            eventform.save()
+        return redirect('list-of-events')
+
+    return render(request, 'eventapp/event_edit.html',{'form': form, 'eventtime_formset':eventtime_formset})
 
 def all_hosts(request):
     event = Event.objects.distinct('host')
