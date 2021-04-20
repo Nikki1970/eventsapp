@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'taggit',
     'django.contrib.gis',
     'django_filters',
-    'bootstrapform'
+    'bootstrapform',
+    'leaflet',
 ]
 
 MIDDLEWARE = [

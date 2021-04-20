@@ -3,6 +3,7 @@ from placesapp.models import Place
 from django.views import generic
 from .forms import PlaceForm
 from django.http import HttpResponseRedirect
+from django.contrib.gis.db.models import PointField
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 def index(request):
