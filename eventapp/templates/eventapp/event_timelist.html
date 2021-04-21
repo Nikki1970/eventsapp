@@ -1,11 +1,12 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h5>Filter using date and time</h5>
+<div class="p-1 mb-1 bg-dark bg-gradient text-white" >
     <form method="get">
         {{ filter.form.as_p }}
-        <input type="submit" />
+        <button type="submit" class="p-1 mb-1 btn btn-info">Filter</button>
     </form>
+</div>
     <table>
     {% for eventtime in filter.qs.distinct %}   
     <tr>

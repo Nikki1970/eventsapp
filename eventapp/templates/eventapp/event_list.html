@@ -1,16 +1,17 @@
 {% extends "base_generic.html" %}
 {% load bootstrap %}
+{% load static %}
 {% block x %}<title>All Events</title>{% endblock %}
 {% block content %}
-<div class="container">
+<div class="p-2 mb-4 bg-dark bg-gradient text-white">
   <form method="GET">
     {{filter.form}}
-    <button type="submit" class="btn btn-primary">Search</button>
+    <button type="submit" class="p-1 mb-1 btn btn-info">Filter</button>
   </form>
 </div>
 <div class="container">
   {% if filter.qs %}
-<table style="width:50%">
+<table style="width:50%" class="table table-light table-hover table-bordered" align="center">
       <tr>
         <th>Event Title</th>
         <th>Update Event</th>
@@ -18,9 +19,9 @@
       </tr>
     {% for event in filter.qs %}
       <tr>
-        <td><a href="{{ event.get_absolute_url }}" class="event">{{ event.title }}</a></td>
-        <td><a href="{% url 'update_event' event.pk %}" class="update">Modify</a></td>
-        <td><a href="{% url 'delete_event' event.pk %}" class="button">Delete</a></td>
+        <td><a href="{{ event.get_absolute_url }}" class="btn btn-outline-dark btn-sm">{{ event.title }}</a></td>
+        <td><a href="{% url 'update_event' event.pk %}" class="btn btn-outline-success btn-sm">Modify</a></td>
+        <td><a href="{% url 'delete_event' event.pk %}" class="btn btn-outline-danger btn-sm">Delete</a></td>
       </tr>
     {% endfor %}
 </table>

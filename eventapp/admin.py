@@ -1,5 +1,12 @@
 from django.contrib import admin
 from .models import Event, EventTime
 # Register your models here.
-admin.site.register(Event)
-admin.site.register(EventTime)
+
+class EventTimeInline(admin.TabularInline):
+    model = EventTime
+    extra = 3
+
+class EventAdmin(admin.ModelAdmin):
+    inlines = [EventTimeInline]
+
+admin.site.register(Event, EventAdmin)

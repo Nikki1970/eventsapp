@@ -4,7 +4,8 @@
     <form method = 'POST'>
         {% csrf_token %}
         {{ form.as_p }}
+        <h4>Event Timings</h4>
         {{eventtime_formset.as_p}}
-        <button type="submit">Add</button>
+        <button type="submit" class="btn btn-primary btn-sm">Add</button>
     </form>
 {% endblock %}
