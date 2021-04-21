@@ -21,7 +21,7 @@ class Event(TimeStampedModel):
 
 class EventTime(models.Model):
     event = models.ForeignKey('Event',on_delete=models.SET_NULL,null=True)
-    date = models.DateField(default=date.today)
+    date = models.DateField(default=date.today,null=True)
     starttime = models.TimeField(blank=True,null=True)
     endtime = models.TimeField(blank=True,null=True)
 

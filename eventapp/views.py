@@ -5,7 +5,7 @@ from .forms import EventForm, EventTimeForm
 from django.contrib.auth.models import User
 from .filters import EventFilter,EventTimeFilter
 from django.shortcuts import get_object_or_404
-from django.forms import formset_factory
+from django.forms import formset_factory, modelformset_factory
 # Create your views here.
 
 
@@ -57,16 +57,31 @@ def deleteEvent(request, pk):
     context = {'event':event}
     return render(request, "eventapp/delete.html",context)
 
-def updateEvent(request, pk):
+# def updateEvent(request, pk):
+#     event = Event.objects.get(id=pk)
+#     form = EventForm(instance=event)
+#     if request.method == "POST":
+#         form = EventForm(request.POST,instance=event)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('list-of-events')
+#     context = {'form':form}
+#     return render(request,"eventapp/event_edit.html",context)
+
+def updateEvent(request,pk):
     event = Event.objects.get(id=pk)
-    form = EventForm(instance=event)
-    if request.method == "POST":
-        form = EventForm(request.POST,instance=event)
-        if form.is_valid():
-            form.save()
+    eventtime = event.eventtime_set.all()
+    form = EventForm(request.POST or None, instance=event)
+    EventTimeFormSet = modelformset_factory(model=EventTime, form=EventTimeForm, extra=1)
+    eventtime_formset = EventTimeFormSet(request.POST or None, queryset=eventtime)
+    if form.is_valid() and eventtime_formset.is_valid():
+        form = form.save()
+        for eventform in eventtime_formset:
+            eventform = eventform.save(commit=False)
+            eventform.event = form
+            eventform.save()
             return redirect('list-of-events')
-    context = {'form':form}
-    return render(request,"eventapp/event_edit.html",context)
+    return render(request,"eventapp/event_edit.html",{'form': form, 'eventtime_formset':eventtime_formset})
 
 def eventtime_new(request, pk):
     form = EventTimeForm(request.POST or None)
