@@ -5,7 +5,7 @@
 <p>Are u sure you want to delete "{{event}}"?</p>
 <form action="{% url 'delete_event' event.pk %}" method="POST">
     {% csrf_token %}
-    <a href="{% url 'list-of-events' %}" class="event">Cancel</a>
+    <a href="{% url 'list-of-events' %}" class="p-1 mb-1 btn btn-secondary btn-sm">Cancel</a>
     <input type="submit" name="Confirm">
 </form>
 {% endblock %}

@@ -10,14 +10,14 @@
   </form>
 </div>
 <div class="container">
-  {% if filter.qs %}
+  {% if event_list %}
 <table style="width:50%" class="table table-light table-hover table-bordered" align="center">
       <tr>
         <th>Event Title</th>
         <th>Update Event</th>
         <th>Remove </th>
       </tr>
-    {% for event in filter.qs %}
+    {% for event in event_list %}
       <tr>
         <td><a href="{{ event.get_absolute_url }}" class="btn btn-outline-dark btn-sm">{{ event.title }}</a></td>
         <td><a href="{% url 'update_event' event.pk %}" class="btn btn-outline-success btn-sm">Modify</a></td>
@@ -26,7 +26,7 @@
     {% endfor %}
 </table>
   {% else %}
-    <p>There are no Events.</p>
+    <p>There are no Books.</p>
   {% endif %}
 </div>
 {% endblock %}
